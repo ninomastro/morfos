@@ -1,138 +1,166 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Morfos - Trasforma la tua Vita</title>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Figtree', sans-serif;
-      background: linear-gradient(135deg, #1d2b27, #3e6852);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      padding: 2rem;
-      gap: 2rem;
-    }
-    header {
-      text-align: center;
-      position: relative;
-      width: 100%;
-    }
-    .logo {
-      width: 150px;
-      animation: pulse 2s infinite;
-      cursor: pointer;
-      border-radius: 50%;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .logo:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-    .hamburger {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 30px;
-      height: 22px;
-      cursor: pointer;
-      z-index: 30;
-    }
-    .hamburger div {
-      background-color: #fff;
-      height: 4px;
-      border-radius: 2px;
-    }
-    nav {
-      display: none;
-      flex-direction: column;
-      position: fixed;
-      top: 60px;
-      left: 20px;
-      background-color: rgba(0, 0, 0, 0.85);
-      padding: 1rem;
-      border-radius: 8px;
-      z-index: 25;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0.5rem 0;
-      font-weight: 600;
-    }
-    nav.active {
-      display: flex;
-    }
-    h1 {
-      font-size: 2rem;
-      margin-top: 1rem;
-    }
-    .countdown {
-      font-size: 1.2rem;
-      margin: 0.5rem 0;
-    }
-    .image-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-    }
-    .image-container img {
-      max-width: 250px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s;
-    }
-    .image-container img:hover {
-      transform: scale(1.05);
-    }
-    .video-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0,0,0,0.9);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-      z-index: 10;
-    }
-    .video-container.active {
-      opacity: 1;
-      visibility: visible;
-    }
-    .video {
-      max-width: 90%;
-      max-height: 90%;
-    }
-    footer {
-      margin-top: auto;
-      font-size: 0.9rem;
-      color: #ccc;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Morfos - Trasforma la tua Vita</title>
+    <link rel="icon" href="favicon1.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Figtree', sans-serif;
+            background: linear-gradient(135deg, #1d2b27, #3e6852);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            gap: 2rem;
+        }
+
+        header {
+            text-align: center;
+            position: relative;
+            width: 100%;
+        }
+
+        .logo {
+            width: 150px;
+            animation: pulse 2s infinite;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+            .logo:hover {
+                transform: scale(1.05);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .hamburger {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 22px;
+            cursor: pointer;
+            z-index: 30;
+        }
+
+            .hamburger div {
+                background-color: #fff;
+                height: 4px;
+                border-radius: 2px;
+            }
+
+        nav {
+            display: none;
+            flex-direction: column;
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 1rem;
+            border-radius: 8px;
+            z-index: 25;
+        }
+
+            nav a {
+                color: #fff;
+                text-decoration: none;
+                margin: 0.5rem 0;
+                font-weight: 600;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+        h1 {
+            font-size: 2rem;
+            margin-top: 1rem;
+        }
+
+        .countdown {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+            .image-container img {
+                max-width: 250px;
+                border-radius: 12px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                transition: transform 0.3s;
+            }
+
+                .image-container img:hover {
+                    transform: scale(1.05);
+                }
+
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 10;
+        }
+
+            .video-container.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+        .video {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        footer {
+            margin-top: auto;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+    </style>
 </head>
 <body>
   <header>
