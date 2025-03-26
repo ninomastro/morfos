@@ -1,187 +1,222 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina con sfondo rotante e opacità</title>
-    <style>
-        @font-face {
-            font-family: 'Futura';
-            src: url('https://fonts.googleapis.com/css2?family=Futura:wght@300&display=swap');
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Futura', Arial, sans-serif;
-            background-color: #2d4e3d;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            overflow-y: auto;
-            height: 100vh;
-            background-image: url('');
-            opacity: 0.9;
-            text-align: center;
-        }
-
-        .container {
-            z-index: 1;
-            padding: 20px;
-            position: relative;
-            margin-top: 50px;
-        }
-
-        .logo {
-            max-width: 250px;
-            cursor: pointer;
-            animation: pulsate 1.5s infinite;
-        }
-
-        @keyframes pulsate {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        .countdown {
-            font-size: 24px;
-            margin-top: 20px;
-        }
-
-        .work-in-progress {
-            font-size: 18px;
-            margin-top: 10px;
-            color: #d87a2f;
-        }
-
-        .image-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 30px;
-            margin-bottom: 30px;
-        }
-
-        .image-container img {
-            max-width: 200px;
-            height: auto;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-
-        .image-container img:hover {
-            opacity: 1;
-        }
-
-        .video-container {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: black;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-
-        .video-container.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .video {
-            max-width: 80%;
-            max-height: 80%;
-        }
-
-        .hidden-content {
-            display: none;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Morfos - Trasforma la tua Vita</title>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Figtree', sans-serif;
+      background: linear-gradient(135deg, #1d2b27, #3e6852);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+      gap: 2rem;
+    }
+    header {
+      text-align: center;
+      position: relative;
+      width: 100%;
+    }
+    .logo {
+      width: 150px;
+      animation: pulse 2s infinite;
+      cursor: pointer;
+      border-radius: 50%;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .logo:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    .hamburger {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 22px;
+      cursor: pointer;
+      z-index: 30;
+    }
+    .hamburger div {
+      background-color: #fff;
+      height: 4px;
+      border-radius: 2px;
+    }
+    nav {
+      display: none;
+      flex-direction: column;
+      position: fixed;
+      top: 60px;
+      left: 20px;
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 1rem;
+      border-radius: 8px;
+      z-index: 25;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0.5rem 0;
+      font-weight: 600;
+    }
+    nav.active {
+      display: flex;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-top: 1rem;
+    }
+    .countdown {
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+    }
+    .image-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .image-container img {
+      max-width: 250px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+    }
+    .image-container img:hover {
+      transform: scale(1.05);
+    }
+    .video-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      z-index: 10;
+    }
+    .video-container.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .video {
+      max-width: 90%;
+      max-height: 90%;
+    }
+    footer {
+      margin-top: auto;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <img src="images/Logo.jpeg" alt="Logo" class="logo" onclick="toggleVideo()">
-        <div class="countdown" id="countdown"></div>
-        <div class="work-in-progress">Transform your life!</div>
-        
-        <div class="image-container" id="imageContainer">
-            <img src="images/Leonardo_Vision_XL_social_wellness_space_for_Morfos_is_an_exp_0.jpg" alt="Immagine 1">
-            <img src="images/immagine (2).jpeg" alt="Immagine 2">
-            <img src="images/immagine (1).jpeg" alt="Immagine 3">
-        </div>
+  <header>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+    <nav id="menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="#" onclick="toggleVideo()">Video</a>
+    </nav>
+    <img src="images/Logo.jpeg" alt="Logo Morfos" class="logo" onclick="toggleVideo()" />
+    <h1>Transform Your Life</h1>
+    <div class="countdown" id="countdown"></div>
+  </header>
 
-    <div class="video-container" id="videoContainer" onclick="toggleVideo()">
-        <video class="video" controls>
-            <source src="video/video.mp4" type="video/mp4">
-            Il tuo browser non supporta il tag video.
-        </video>
-    </div>
+  <section class="image-container" id="imageContainer">
+    <img src="images/Leonardo_Vision_XL_social_wellness_space_for_Morfos_is_an_exp_0.jpg" alt="Spazio Morfos" />
+    <img src="images/immagine (2).jpeg" alt="Benessere 1" />
+    <img src="images/immagine (1).jpeg" alt="Benessere 2" />
+  </section>
 
-    <script>
-        var deadline = new Date('2025-04-10T00:00:00');
-        
-        function getTimeRemaining(endtime) {
-            var total = Date.parse(endtime) - Date.parse(new Date());
-            var seconds = Math.floor((total / 1000) % 60);
-            var minutes = Math.floor((total / 1000 / 60) % 60);
-            var hours = Math.floor((total / (1000 * 60 * 60)) % 24);
-            var days = Math.floor(total / (1000 * 60 * 60 * 24));
-            
-            return {
-                total: total,
-                days: days,
-                hours: hours,
-                minutes: minutes,
-                seconds: seconds
-            };
-        }
-        
-        function initializeClock(endtime) {
-            var countdownElement = document.getElementById('countdown');
-            
-            function updateClock() {
-                var t = getTimeRemaining(endtime);
-                
-                countdownElement.innerHTML = t.days + ' days ' +
-                                              t.hours + ' hours ' +
-                                              t.minutes + ' minutes ' +
-                                              t.seconds + ' seconds';
-                
-                if (t.total <= 0) {
-                    clearInterval(timeinterval);
-                }
-            }
-        
-            updateClock();
-            var timeinterval = setInterval(updateClock, 1000);
-        }
-        
-        initializeClock(deadline);
-        
-        function toggleVideo() {
-            var videoContainer = document.getElementById('videoContainer');
-            var imageContainer = document.getElementById('imageContainer');
-            var video = document.querySelector('.video');
+  <div class="video-container" id="videoContainer" onclick="toggleVideo()">
+    <video class="video" controls>
+      <source src="video/video.mp4" type="video/mp4" />
+      Il tuo browser non supporta il tag video.
+    </video>
+  </div>
 
-            if (videoContainer.classList.contains('active')) {
-                video.pause();
-                video.currentTime = 0;
-                videoContainer.classList.remove('active');
-                imageContainer.classList.remove('hidden-content');
-            } else {
-                videoContainer.classList.add('active');
-                imageContainer.classList.add('hidden-content');
-            }
-        }
-    </script>
+  <footer>
+    &copy; 2025 Morfos - Tutti i diritti riservati
+  </footer>
+
+  <script>
+    const deadline = new Date('2025-04-10T00:00:00');
+
+    function getTimeRemaining(endtime) {
+      const total = Date.parse(endtime) - Date.parse(new Date());
+      const seconds = Math.floor((total / 1000) % 60);
+      const minutes = Math.floor((total / 1000 / 60) % 60);
+      const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+      const days = Math.floor(total / (1000 * 60 * 60 * 24));
+
+      return { total, days, hours, minutes, seconds };
+    }
+
+    function initializeClock(endtime) {
+      const countdown = document.getElementById('countdown');
+
+      function updateClock() {
+        const t = getTimeRemaining(endtime);
+
+        countdown.textContent = `${t.days} giorni ${t.hours} ore ${t.minutes} min ${t.seconds} sec`;
+
+        if (t.total <= 0) clearInterval(timeinterval);
+      }
+
+      updateClock();
+      const timeinterval = setInterval(updateClock, 1000);
+    }
+
+    function toggleVideo() {
+      const container = document.getElementById('videoContainer');
+      const video = container.querySelector('video');
+      const images = document.getElementById('imageContainer');
+
+      if (container.classList.contains('active')) {
+        video.pause();
+        video.currentTime = 0;
+        container.classList.remove('active');
+        images.style.display = 'flex';
+      } else {
+        container.classList.add('active');
+        images.style.display = 'none';
+      }
+    }
+
+    function toggleMenu() {
+      document.getElementById('menu').classList.toggle('active');
+    }
+
+    initializeClock(deadline);
+  </script>
 </body>
 </html>
